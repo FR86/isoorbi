@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">isoorbi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.5.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +15,7 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/quick_start.html">Quick Start</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../index.html#show-me-some-code">Quick Start</a></li>
 <li class="nav-item"><a class="nav-link" href="../articles/functionality_guide.html">Functionality Guide</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
@@ -39,6 +39,31 @@
       <small>Source: <a href="https://github.com/isoverse/isoorbi/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.5.2" id="isoorbi-152">isoorbi 1.5.2<a class="anchor" aria-label="anchor" href="#isoorbi-152"></a></h2><p class="text-muted">CRAN release: 2025-10-03</p>
+<p>This is a minor update to decrease package size for CRAN.</p>
+<div class="section level3">
+<h3 id="enhancements-1-5-2">Enhancements<a class="anchor" aria-label="anchor" href="#enhancements-1-5-2"></a></h3>
+<ul><li>added <code><a href="../reference/orbi_get_example_files.html">orbi_get_example_files()</a></code> that can download additional example files to provide easier access to test files for users</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.5.1" id="isoorbi-151">isoorbi 1.5.1<a class="anchor" aria-label="anchor" href="#isoorbi-151"></a></h2>
+<p>This is a minor update to enhance usability.</p>
+<div class="section level3">
+<h3 id="enhancements-1-5-1">Enhancements<a class="anchor" aria-label="anchor" href="#enhancements-1-5-1"></a></h3>
+<ul><li>show panel lables in spectral plots, i.e. M+1, M+2, etc. (<a href="https://github.com/isoverse/isoorbi/issues/93" class="external-link">#93</a>)</li>
+<li>align x-axes in spectral plots (<a href="https://github.com/isoverse/isoorbi/issues/98" class="external-link">#98</a>)</li>
+<li>introduce default_tolerance and default_charge parameters for <code>orbi_identify_isotopocules</code> (<a href="https://github.com/isoverse/isoorbi/issues/95" class="external-link">#95</a>)</li>
+<li>automatically calculate ions during <code>orbi_identify_isotopocules</code>
+</li>
+<li>provide a stastic of ion counts identified when running <code>orbi_identify_isotopocules</code> (<a href="https://github.com/isoverse/isoorbi/issues/94" class="external-link">#94</a>)</li>
+<li>provide more informative error when <code>orbi_read_raw</code> fails because the raw file is still being acquired</li>
+<li>provide <code>orbi_get_example_files</code> function as a one-point stop to get both system package test files as well as downloadable test files</li>
+<li>
+<code>orbi_find_raw</code> now finds both .raw and .RAW extensions (i.e. no longer case-sensitive)</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.5.0" id="isoorbi-150">isoorbi 1.5.0<a class="anchor" aria-label="anchor" href="#isoorbi-150"></a></h2>
 <div class="section level3">
