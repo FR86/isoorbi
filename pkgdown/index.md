@@ -28,6 +28,17 @@ You can install the current CRAN version of `isoorbi` with:
     # check/install the isoraw reader
     isoorbi::orbi_check_isoraw()
 
+> Important: the call to `orbi_check_isoraw()` installs the [isoraw
+> reader](https://github.com/isoverse/isoorbi/tree/main/inst/assembly)
+> built into this package, which uses Thermo’s
+> [RawFileReader](https://github.com/thermofisherlsms/RawFileReader) to
+> make it possible to read .RAW files directly. During the installation,
+> you will be asked to agree to [Thermo’s license
+> agreement](https://github.com/fgcz/rawrr/blob/devel/inst/rawrrassembly/RawFileReaderLicense.txt)
+> to proceed.
+
+### Development version
+
 To use the latest updates, you can install the development version of
 `isoorbi` from [GitHub](https://github.com/). If you are on Windows,
 make sure to install the equivalent version of
@@ -46,20 +57,6 @@ version](https://cran.r-project.org/) 4.4 or newer).
 
     # check/install the isoraw reader
     isoorbi::orbi_check_isoraw()
-
-> Important: as of isoorbi version 1.5.0, it is possible to read .raw
-> files directly using the [isoraw
-> reader](https://github.com/isoverse/isoorbi/tree/main/inst/assembly)
-> built into this package. The first time you read a .raw file, you will
-> be asked to agree to [Thermo’s license
-> agreement](https://github.com/fgcz/rawrr/blob/devel/inst/rawrrassembly/RawFileReaderLicense.txt)
-> to proceed. Implementation of the isoraw reader, would not have been
-> possible without the example provided by Jim Shofstahl as part of
-> Thermo’s
-> [RawFileReader](https://github.com/thermofisherlsms/RawFileReader) and
-> the raw file reader developed by Witold Wolski, Christian Panse,
-> Christian Trachsel, and Tobias Kockmann as part of the [rawrr
-> package](https://github.com/fgcz/rawrr).
 
 ## Show me some code
 
