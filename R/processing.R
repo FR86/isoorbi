@@ -756,8 +756,11 @@ orbi_filter_flagged_data <- function(dataset) {
 }
 
 
-#' @title Define the denominator for ratio calculation
-#' @description `orbi_define_basepeak()` sets one isotopocule in the data frame as the base peak (ratio denominator) and calculates the instantaneous isotope ratios against it.
+#' Define the denominator for ratio calculation
+#'
+#' This function sets one isotopocule in the data frame as the base peak (ratio denominator) and calculates the instantaneous isotope ratios against it.
+#' Note that if there are any unidentified or missing peaks in the dataset, this function calls [orbi_filter_isotopocules()] first to avoid ambiguity in the dataset.
+#'
 #' @inheritParams orbi_flag_satellite_peaks
 #' @param basepeak_def The isotopocule that gets defined as base peak, i.e. the denominator to calculate ratios
 #'
@@ -801,6 +804,11 @@ orbi_define_basepeak <- function(dataset, basepeak_def) {
     cli_abort(
       "no {.field ions.incremental} column, make sure to run {.strong orbi_calculate_ions()} first"
     )
+  }
+
+  # needs missing/unidentified filtering?
+  if (any(is.na(peaks$isotopocule)) || any(is.na(peaks$ions.incremental))) {
+    peaks <- peaks |> orbi_filter_isotopocules()
   }
 
   ## basepeak_def
