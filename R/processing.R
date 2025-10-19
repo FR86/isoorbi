@@ -39,10 +39,17 @@ orbi_flag_satellite_peaks <- function(dataset) {
   # check columns
   check_tibble(
     peaks,
-    c("uidx|filename", "scan.no", "isotopocule", "ions.incremental|intensity"),
+    c("uidx|filename", "scan.no", "ions.incremental|intensity"),
     regexps = TRUE,
     .arg = "dataset"
   )
+
+  if (!"isotopocule" %in% names(peaks)) {
+    # more specialized error message
+    cli_abort(
+      "no {.field isotopocule} column, make sure to run {.strong orbi_identify_isotopocules()} first"
+    )
+  }
 
   # info
   start <- start_info("is running")
