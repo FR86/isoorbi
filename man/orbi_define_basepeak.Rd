@@ -16,7 +16,8 @@ same object as provided in \code{dataset} without the rows of the basepeak isoto
 }
 \description{
 This function sets one isotopocule in the data frame as the base peak (ratio denominator) and calculates the instantaneous isotope ratios against it.
-Note that if there are any unidentified or missing peaks in the dataset, this function calls \code{\link[=orbi_filter_isotopocules]{orbi_filter_isotopocules()}} first to avoid ambiguity in the dataset.
+Note that any unidentified or missing peaks in the dataset are filtered out prior to ratio calculations (i.e. what \code{\link[=orbi_filter_isotopocules]{orbi_filter_isotopocules()}} does by default) to avoid ambiguity in the dataset.
+To do this explicitly (with information displayed about how many unidentified peaks were filtered out), call \code{\link[=orbi_filter_isotopocules]{orbi_filter_isotopocules()}} manually before \code{\link[=orbi_define_basepeak]{orbi_define_basepeak()}}.
 }
 \examples{
 fpath <- system.file("extdata", "testfile_flow.isox", package = "isoorbi")

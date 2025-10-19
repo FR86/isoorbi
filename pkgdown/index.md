@@ -105,8 +105,6 @@ version](https://cran.r-project.org/) 4.4 or newer).
 
     # process raw files data
     dataset <- raw_agg |>
-      # filter out unidentified peaks
-      orbi_filter_isotopocules() |>
       # check for satellite peaks
       orbi_flag_satellite_peaks() |>
       # define base peak

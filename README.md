@@ -105,8 +105,6 @@ version](https://cran.r-project.org/) 4.4 or newer).
 
     # process raw files data
     dataset <- raw_agg |>
-      # filter out unidentified peaks
-      orbi_filter_isotopocules() |>
       # check for satellite peaks
       orbi_flag_satellite_peaks() |>
       # define base peak
@@ -131,12 +129,12 @@ version](https://cran.r-project.org/) 4.4 or newer).
       include = c("file_info", "summary")
     )
 
-    # A tibble: 3 × 5
+    [38;5;246m# A tibble: 3 × 5[39m
        uidx filename             isotopocule   ratio ratio_sem
-      <int> <chr>                <fct>         <dbl>     <dbl>
-    1     1 nitrate_test_10scans 15N         0.00422 0.0000980
-    2     1 nitrate_test_10scans 17O         0.00132 0.0000554
-    3     1 nitrate_test_10scans 18O         0.00775 0.000162 
+      [3m[38;5;246m<int>[39m[23m [3m[38;5;246m<chr>[39m[23m                [3m[38;5;246m<fct>[39m[23m         [3m[38;5;246m<dbl>[39m[23m     [3m[38;5;246m<dbl>[39m[23m
+    [38;5;250m1[39m     1 nitrate_test_10scans 15N         0.004[4m2[24m[4m2[24m 0.000[4m0[24m[4m9[24m[4m8[24m0
+    [38;5;250m2[39m     1 nitrate_test_10scans 17O         0.001[4m3[24m[4m2[24m 0.000[4m0[24m[4m5[24m[4m5[24m4
+    [38;5;250m3[39m     1 nitrate_test_10scans 18O         0.007[4m7[24m[4m5[24m 0.000[4m1[24m[4m6[24m[4m2[24m 
 
 For additional code, please check out our **Examples** in the main menu
 at [isoorbi.isoverse.org](https://isoorbi.isoverse.org/), and peruse the

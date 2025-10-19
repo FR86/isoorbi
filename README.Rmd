@@ -117,8 +117,6 @@ raw_agg |> orbi_plot_spectra()
 ```{r "process-data", messages = FALSE, fig.width = 8, fig.height = 4}
 # process raw files data
 dataset <- raw_agg |>
-  # filter out unidentified peaks
-  orbi_filter_isotopocules() |>
   # check for satellite peaks
   orbi_flag_satellite_peaks() |>
   # define base peak
