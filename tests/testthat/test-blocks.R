@@ -1,4 +1,4 @@
-test_that("test orbi_define_block_for_flow_injection()", {
+test_that("orbi_define_block_for_flow_injection()", {
   # type checks
   expect_error(
     orbi_define_block_for_flow_injection(),
@@ -63,7 +63,7 @@ test_that("test orbi_define_block_for_flow_injection()", {
     expect_message("added a new block")
 })
 
-test_that("test internal find_intervals()", {
+test_that("internal find_intervals()", {
   # type checks
   expect_error(find_intervals(), "`total_time` must a single number")
   expect_error(find_intervals("4.2"), "`total_time` must a single number")
@@ -129,7 +129,7 @@ test_that("test internal find_intervals()", {
   )
 })
 
-test_that("test find_blocks()", {
+test_that("find_blocks()", {
   # type checks
   expect_error(find_blocks(), "dataset.* must be a data frame or tibble")
   expect_error(find_blocks(42), "dataset.* must be a data frame or tibble")
@@ -213,7 +213,7 @@ test_that("test find_blocks()", {
   )
 })
 
-test_that("test orbi_define_blocks_for_dual_inlet()", {
+test_that("orbi_define_blocks_for_dual_inlet()", {
   # type checks
   expect_error(
     orbi_define_blocks_for_dual_inlet(),
@@ -385,7 +385,7 @@ test_that("test orbi_define_blocks_for_dual_inlet()", {
   )
 })
 
-test_that("test orbi_adjust_block()", {
+test_that("orbi_adjust_block()", {
   # type checks
   expect_error(
     orbi_adjust_block(),
@@ -531,7 +531,7 @@ test_that("test orbi_adjust_block()", {
   expect_equal(result1$segment, rep(c(NA_integer_, 1L), c(5, 1)))
 
   # capture success messages and results
-  test_that_cli("orbi_adjust_block", configs = c("plain", "fancy"), {
+  test_that_cli("cli", configs = c("plain", "fancy"), {
     expect_snapshot({
       result2 <- orbi_adjust_block(
         test_data,
@@ -579,7 +579,7 @@ test_that("test orbi_adjust_block()", {
     withr::with_options(new = list(show_exec_times = FALSE))
 })
 
-test_that("test orbi_segment_block()", {
+test_that("orbi_segment_block()", {
   # type checks
   expect_error(
     orbi_segment_blocks(),
@@ -665,7 +665,7 @@ test_that("test orbi_segment_block()", {
   )
 
   # check messages and data
-  test_that_cli("orbi_segment_block()", configs = c("plain", "fancy"), {
+  test_that_cli("cli", configs = c("plain", "fancy"), {
     # approach 1
     expect_snapshot(res1 <- test_data |> orbi_segment_blocks(into_segments = 2))
     expect_equal(
@@ -706,7 +706,7 @@ test_that("test orbi_segment_block()", {
 }) |>
   withr::with_options(new = list(show_exec_times = FALSE))
 
-test_that("test orbi_get_blocks_info()", {
+test_that("orbi_get_blocks_info()", {
   # type checks
   expect_error(
     orbi_get_blocks_info(),
@@ -731,7 +731,7 @@ test_that("test orbi_get_blocks_info()", {
   )
 })
 
-test_that("test orbi_add_blocks_to_plot()", {
+test_that("orbi_add_blocks_to_plot()", {
   # type checks
   expect_error(
     orbi_add_blocks_to_plot(),
@@ -756,7 +756,7 @@ test_that("test orbi_add_blocks_to_plot()", {
   )
 })
 
-test_that("test find_scan_from_time()", {
+test_that("find_scan_from_time()", {
   # type checks
   expect_error(
     find_scan_from_time(),
@@ -772,7 +772,7 @@ test_that("test find_scan_from_time()", {
   )
 })
 
-test_that("test get_scan_row()", {
+test_that("get_scan_row()", {
   # type checks
   expect_error(get_scan_row(), "argument \"scan\" is missing, with no default")
   expect_error(

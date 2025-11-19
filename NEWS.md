@@ -1,3 +1,15 @@
+# isoorbi 1.5.3
+
+This is a minor update to support the latest version of testthat and address a few small bugs.
+
+## Bug fixes & improvements
+
+ * updated snapshots for continuous integration tests to work with testthat 3.3.0
+ * changed `orbi_export_data_to_excel()` to only export `file_info` and `summary` by default to avoid uintentionally enormous excel files when exporting large datasets (#106)
+ * fixed issue with `orbi_define_basepeak()` not correctly handling unidentified peaks, they are now automatically filtered out when this function is called (#114)
+ * improved error messages in functions that need an isotopocule defintion ifisotopocules have not yet been identified
+ * clarified installation instructions
+
 # isoorbi 1.5.2
 
 This is a minor update to decrease package size for CRAN. 

@@ -1,4 +1,4 @@
-# cli [plain]
+# orbi_summarize_results() / cli [plain]
 
     Code
       res <- orbi_summarize_results(df, ratio_method = "sum")
@@ -6,7 +6,7 @@
       v orbi_summarize_results() summarized ratios from 4.32k peak using the sum
       method and grouping the data by filename, compound, basepeak, and isotopocule
 
-# cli [fancy]
+# orbi_summarize_results() / cli [fancy]
 
     Code
       res <- orbi_summarize_results(df, ratio_method = "sum")

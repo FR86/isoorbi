@@ -29,56 +29,52 @@ test_that("orbi_read_isox()", {
   unlink(temp_file) # destroy the temp file
 
   # read files
-  test_that_cli(
-    "orbi_read_isox()",
-    configs = c("plain", "fancy"),
-    {
-      # corrupt files - missing column
-      orbi_read_isox(file.path(
-        base_dir,
-        "test_files",
-        "missing_column.isox"
-      )) |>
-        expect_snapshot(error = TRUE)
+  test_that_cli("cli", configs = c("plain", "fancy"), {
+    # corrupt files - missing column
+    orbi_read_isox(file.path(
+      base_dir,
+      "test_files",
+      "missing_column.isox"
+    )) |>
+      expect_snapshot(error = TRUE)
 
-      # read single file
-      expect_snapshot({
-        df <- orbi_read_isox(orbi_get_example_files("testfile_dual_inlet.isox"))
-      })
+    # read single file
+    expect_snapshot({
+      df <- orbi_read_isox(orbi_get_example_files("testfile_dual_inlet.isox"))
+    })
 
-      # check output
-      expect_equal(
-        names(df),
-        c(
-          "filepath",
-          "filename",
-          "scan.no",
-          "time.min",
-          "compound",
-          "isotopocule",
-          "ions.incremental",
-          "tic",
-          "it.ms"
-        )
+    # check output
+    expect_equal(
+      names(df),
+      c(
+        "filepath",
+        "filename",
+        "scan.no",
+        "time.min",
+        "compound",
+        "isotopocule",
+        "ions.incremental",
+        "tic",
+        "it.ms"
       )
+    )
 
-      # number of rows
-      expect_equal(nrow(df), 5184)
+    # number of rows
+    expect_equal(nrow(df), 5184)
 
-      # read multiple files
-      expect_snapshot({
-        df2 <-
-          orbi_get_example_files(c(
-            "testfile_dual_inlet.isox",
-            "testfile_flow.isox"
-          )) |>
-          orbi_read_isox()
-      })
+    # read multiple files
+    expect_snapshot({
+      df2 <-
+        orbi_get_example_files(c(
+          "testfile_dual_inlet.isox",
+          "testfile_flow.isox"
+        )) |>
+        orbi_read_isox()
+    })
 
-      # check result
-      expect_equal(nrow(df2), 11633)
-    }
-  ) |>
+    # check result
+    expect_equal(nrow(df2), 11633)
+  }) |>
     withr::with_options(new = list(show_exec_times = FALSE))
 })
 

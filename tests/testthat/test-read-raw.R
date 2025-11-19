@@ -82,7 +82,7 @@ test_that("orbi_read_raw()", {
   expect_error(orbi_read_raw(character()), "file_paths.*must be at least one")
 
   # succesful read without spectra (default)
-  test_that_cli("orbi_read_raw()", configs = c("plain", "fancy"), {
+  test_that_cli("cli", configs = c("plain", "fancy"), {
     expect_snapshot(
       x <- system.file("extdata", package = "isoorbi") |>
         orbi_find_raw(pattern = "nitrate") |>
@@ -102,7 +102,7 @@ test_that("orbi_read_raw()", {
   })
 
   # succesful read with spectra
-  test_that_cli("orbi_read_raw() step2", configs = c("plain", "fancy"), {
+  test_that_cli("cli", configs = c("plain", "fancy"), {
     expect_snapshot(
       x <- system.file("extdata", package = "isoorbi") |>
         orbi_find_raw(pattern = "nitrate") |>

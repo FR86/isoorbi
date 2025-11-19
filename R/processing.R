@@ -39,10 +39,17 @@ orbi_flag_satellite_peaks <- function(dataset) {
   # check columns
   check_tibble(
     peaks,
-    c("uidx|filename", "scan.no", "isotopocule", "ions.incremental|intensity"),
+    c("uidx|filename", "scan.no", "ions.incremental|intensity"),
     regexps = TRUE,
     .arg = "dataset"
   )
+
+  if (!"isotopocule" %in% names(peaks)) {
+    # more specialized error message
+    cli_abort(
+      "no {.field isotopocule} column, make sure to run {.strong orbi_identify_isotopocules()} first"
+    )
+  }
 
   # info
   start <- start_info("is running")
@@ -749,8 +756,12 @@ orbi_filter_flagged_data <- function(dataset) {
 }
 
 
-#' @title Define the denominator for ratio calculation
-#' @description `orbi_define_basepeak()` sets one isotopocule in the data frame as the base peak (ratio denominator) and calculates the instantaneous isotope ratios against it.
+#' Define the denominator for ratio calculation
+#'
+#' This function sets one isotopocule in the data frame as the base peak (ratio denominator) and calculates the instantaneous isotope ratios against it.
+#' Note that any unidentified or missing peaks in the dataset are filtered out prior to ratio calculations (i.e. what [orbi_filter_isotopocules()] does by default) to avoid ambiguity in the dataset.
+#' To do this explicitly (with information displayed about how many unidentified peaks were filtered out), call [orbi_filter_isotopocules()] manually before [orbi_define_basepeak()].
+#'
 #' @inheritParams orbi_flag_satellite_peaks
 #' @param basepeak_def The isotopocule that gets defined as base peak, i.e. the denominator to calculate ratios
 #'
@@ -794,6 +805,11 @@ orbi_define_basepeak <- function(dataset, basepeak_def) {
     cli_abort(
       "no {.field ions.incremental} column, make sure to run {.strong orbi_calculate_ions()} first"
     )
+  }
+
+  # needs missing/unidentified filtering?
+  if (any(is.na(peaks$isotopocule)) || any(is.na(peaks$ions.incremental))) {
+    peaks <- peaks |> orbi_filter_isotopocules() |> suppressMessages()
   }
 
   ## basepeak_def

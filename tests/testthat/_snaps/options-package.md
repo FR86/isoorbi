@@ -1,4 +1,4 @@
-# orbi_get_options() [plain]
+# options works / cli [plain]
 
     Code
       orbi_get_options()
@@ -150,7 +150,7 @@
       [1] TRUE
       
 
-# orbi_get_options() [fancy]
+# options works / cli [fancy]
 
     Code
       orbi_get_options()

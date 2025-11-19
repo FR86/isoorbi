@@ -62,7 +62,7 @@ test_that("orbi_flag_satellite_peaks()", {
   )
 
   # success
-  test_that_cli("orbi_flag_satellite_peaks()", configs = c("plain", "fancy"), {
+  test_that_cli("cli", configs = c("plain", "fancy"), {
     # example dataset - test agg data vs tibble
     expect_snapshot(agg_out <- orbi_flag_satellite_peaks(agg_data))
     expect_snapshot(agg_out)
@@ -101,33 +101,29 @@ test_that("orbi_flag_weak_isotopocules()", {
     expect_error("min_percent.*must be a single number")
 
   # success
-  test_that_cli(
-    "orbi_flag_weak_isotopocules()",
-    configs = c("plain", "fancy"),
-    {
-      # example dataset - test agg data vs tibble
-      expect_snapshot(agg_out <- orbi_flag_weak_isotopocules(agg_data, 90))
-      expect_snapshot(agg_out)
-      expect_snapshot_value(agg_out$peaks, style = "json2")
-      expect_equal(agg_out$peaks, orbi_flag_weak_isotopocules(peaks, 90)) |>
-        suppressMessages()
+  test_that_cli("cli", configs = c("plain", "fancy"), {
+    # example dataset - test agg data vs tibble
+    expect_snapshot(agg_out <- orbi_flag_weak_isotopocules(agg_data, 90))
+    expect_snapshot(agg_out)
+    expect_snapshot_value(agg_out$peaks, style = "json2")
+    expect_equal(agg_out$peaks, orbi_flag_weak_isotopocules(peaks, 90)) |>
+      suppressMessages()
 
-      # test order of operations to be equal in outcome
-      expect_equal(
-        agg_out |>
-          orbi_filter_isotopocules() |>
-          orbi_get_data(file_info = NULL, peaks = everything()),
-        peaks |> orbi_filter_isotopocules() |> orbi_flag_weak_isotopocules(90)
-      ) |>
-        suppressMessages()
+    # test order of operations to be equal in outcome
+    expect_equal(
+      agg_out |>
+        orbi_filter_isotopocules() |>
+        orbi_get_data(file_info = NULL, peaks = everything()),
+      peaks |> orbi_filter_isotopocules() |> orbi_flag_weak_isotopocules(90)
+    ) |>
+      suppressMessages()
 
-      # test real file
-      expect_snapshot(out <- orbi_flag_weak_isotopocules(test_file, 90))
-      expect_snapshot(out <- orbi_flag_weak_isotopocules(test_file, 99.999))
+    # test real file
+    expect_snapshot(out <- orbi_flag_weak_isotopocules(test_file, 90))
+    expect_snapshot(out <- orbi_flag_weak_isotopocules(test_file, 99.999))
 
-      # FIXME: add tests with segmentation
-    }
-  ) |>
+    # FIXME: add tests with segmentation
+  }) |>
     withr::with_options(new = list(show_exec_times = FALSE))
 })
 
@@ -162,7 +158,7 @@ test_that("orbi_flag_outliers()", {
     )
 
   # success
-  test_that_cli("orbi_flag_outliers()", configs = c("plain", "fancy"), {
+  test_that_cli("cli", configs = c("plain", "fancy"), {
     # agc window
     expect_snapshot(
       agg_out <- agg_data |> orbi_flag_outliers(agc_window = c(10, 90))
@@ -263,7 +259,7 @@ test_that("orbi_define_basepeak()", {
 
   # success
   ## message
-  test_that_cli("orbi_define_basepeak()", configs = c("plain", "fancy"), {
+  test_that_cli("cli", configs = c("plain", "fancy"), {
     expect_snapshot(
       out <- orbi_define_basepeak(dataset = df, basepeak_def = "M0")
     )

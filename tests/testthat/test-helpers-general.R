@@ -71,65 +71,61 @@ test_that("start_info() / finish_info()", {
 
   # cli tests --> this is nested instead of at the top level (with test_that_cli)
   # so that the positron testing framework recognizes the test exists
-  test_that_cli(
-    "start/finish_info()",
-    configs = c("plain", "fancy"),
-    {
-      # testing function
-      test_info <- function(
-        ...,
-        keep = FALSE,
-        func = TRUE,
-        time = FALSE, # otherwise snapshots are always different
-        conditions = tibble(),
-        delay = 0.1
-      ) {
-        x <- 5
-        start <- start_info(
-          "testing {.field x = {x}}",
-          keep = keep,
-          func = func
-        )
-        Sys.sleep(delay)
-        finish_info(
-          "done with {.field x = {x}}",
-          start = start,
-          func = func,
-          conditions = conditions,
-          time = time,
-          ...
-        )
-      }
-
-      # default
-      test_info() |> expect_snapshot()
-
-      # with permanent starting message
-      test_info(keep = TRUE) |> expect_snapshot()
-
-      # without function
-      test_info(keep = TRUE, func = FALSE) |> expect_snapshot()
-
-      # with issues
-      test_info(conditions = conditions) |> expect_snapshot()
-
-      # with issues but not showing the details
-      test_info(conditions = conditions, show_conditions = FALSE) |>
-        expect_snapshot()
-
-      # with a single warning
-      test_info(conditions = conditions[1, ]) |> expect_snapshot()
-
-      # with a single error
-      test_info(conditions = conditions[2, ]) |> expect_snapshot()
-
-      # abort warnings
-      test_info(conditions = conditions, abort_if_warnings = TRUE) |>
-        expect_snapshot(error = TRUE)
-
-      # abort errors
-      test_info(conditions = conditions, abort_if_errors = TRUE) |>
-        expect_snapshot(error = TRUE)
+  test_that_cli("cli", configs = c("plain", "fancy"), {
+    # testing function
+    test_info <- function(
+      ...,
+      keep = FALSE,
+      func = TRUE,
+      time = FALSE, # otherwise snapshots are always different
+      conditions = tibble(),
+      delay = 0.1
+    ) {
+      x <- 5
+      start <- start_info(
+        "testing {.field x = {x}}",
+        keep = keep,
+        func = func
+      )
+      Sys.sleep(delay)
+      finish_info(
+        "done with {.field x = {x}}",
+        start = start,
+        func = func,
+        conditions = conditions,
+        time = time,
+        ...
+      )
     }
-  )
+
+    # default
+    test_info() |> expect_snapshot()
+
+    # with permanent starting message
+    test_info(keep = TRUE) |> expect_snapshot()
+
+    # without function
+    test_info(keep = TRUE, func = FALSE) |> expect_snapshot()
+
+    # with issues
+    test_info(conditions = conditions) |> expect_snapshot()
+
+    # with issues but not showing the details
+    test_info(conditions = conditions, show_conditions = FALSE) |>
+      expect_snapshot()
+
+    # with a single warning
+    test_info(conditions = conditions[1, ]) |> expect_snapshot()
+
+    # with a single error
+    test_info(conditions = conditions[2, ]) |> expect_snapshot()
+
+    # abort warnings
+    test_info(conditions = conditions, abort_if_warnings = TRUE) |>
+      expect_snapshot(error = TRUE)
+
+    # abort errors
+    test_info(conditions = conditions, abort_if_errors = TRUE) |>
+      expect_snapshot(error = TRUE)
+  })
 })

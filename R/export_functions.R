@@ -6,7 +6,9 @@
 #' @param dbl_digits how many digits to show for dbls (all are exported)
 #' @param int_format the excel formatting style for integers
 #' @param dbl_format the excel formatting style for doubles (created automatically from the dbl_digits parameter)
-#' @param include which tibbles to include if `dataset` is aggregated data. By default includes all but spectra
+#' @param include which tibbles to include if `dataset` is aggregated data. By default includes just the file_info and summary (if it exists) to avoid accidentally generating massive excel files.
+#' To export e.g. the file_info, scans, and peaks, use `include = c("file_info", "scans", "peaks")` (using [orbi_filter_isotopocules()] first is highly recommended if exporting peaks).
+#' To export the entire spectra in the dataset, use `include = c("file_info", "spectra")`.
 #' @export
 #' @return returns dataset invisibly for use in pipes
 orbi_export_data_to_excel <- function(
@@ -15,7 +17,7 @@ orbi_export_data_to_excel <- function(
   dbl_digits = 7,
   int_format = "0",
   dbl_format = sprintf(sprintf("%%.%sf", dbl_digits), 0),
-  include = c("file_info", "summary", "scans", "peaks", "problems"),
+  include = c("file_info", "summary"),
   show_progress = rlang::is_interactive()
 ) {
   # check for availability

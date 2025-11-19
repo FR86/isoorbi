@@ -1,4 +1,4 @@
-# orbi_flag_satellite_peaks() [plain]
+# orbi_flag_satellite_peaks() / cli [plain]
 
     Code
       agg_out <- orbi_flag_satellite_peaks(agg_data)
@@ -132,7 +132,7 @@
     Message
       v orbi_flag_satellite_peaks() confirmed there are no satellite peaks
 
-# orbi_flag_satellite_peaks() [fancy]
+# orbi_flag_satellite_peaks() / cli [fancy]
 
     Code
       agg_out <- orbi_flag_satellite_peaks(agg_data)
@@ -266,7 +266,7 @@
     Message
       [32m✔[39m [1morbi_flag_satellite_peaks()[22m confirmed there are no [33msatellite[39m peaks
 
-# orbi_flag_weak_isotopocules() [plain]
+# orbi_flag_weak_isotopocules() / cli [plain]
 
     Code
       agg_out <- orbi_flag_weak_isotopocules(agg_data, 90)
@@ -413,7 +413,7 @@
       are detected in at least 99.999% of scans in each of the 6 data groups (based
       on filename, compound, and isotopocule)
 
-# orbi_flag_weak_isotopocules() [fancy]
+# orbi_flag_weak_isotopocules() / cli [fancy]
 
     Code
       agg_out <- orbi_flag_weak_isotopocules(agg_data, 90)
@@ -560,7 +560,7 @@
       are detected in at least 99.999% of scans in each of the 6 data groups (based
       on [32mfilename[39m, [32mcompound[39m, and [32misotopocule[39m)
 
-# orbi_flag_outliers() [plain]
+# orbi_flag_outliers() / cli [plain]
 
     Code
       agg_out <- orbi_flag_outliers(agg_data, agc_window = c(10, 90))
@@ -666,7 +666,7 @@
       on 2 fold AGC cutoff, i.e. based on scans below 1/2 and above 2 times the
       average number of ions tic * it.ms in the Orbitrap analyzer
 
-# orbi_flag_outliers() [fancy]
+# orbi_flag_outliers() / cli [fancy]
 
     Code
       agg_out <- orbi_flag_outliers(agg_data, agc_window = c(10, 90))
@@ -772,7 +772,7 @@
       on [32m2 fold AGC cutoff[39m, i.e. based on [3mscans below 1/2 and above 2 times the[23m
       [3maverage number of ions [32mtic[39m * [32mit.ms[39m in the Orbitrap analyzer[23m
 
-# orbi_define_basepeak() [plain]
+# orbi_define_basepeak() / cli [plain]
 
     Code
       out <- orbi_define_basepeak(dataset = df, basepeak_def = "M0")
@@ -780,7 +780,7 @@
       v orbi_define_basepeak() set M0 as the ratio denominator and calculated 8 ratio
       values for 4 isotopocules (17O, 18O, 33S, and 34S)
 
-# orbi_define_basepeak() [fancy]
+# orbi_define_basepeak() / cli [fancy]
 
     Code
       out <- orbi_define_basepeak(dataset = df, basepeak_def = "M0")

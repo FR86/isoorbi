@@ -57,6 +57,7 @@ plots/
 *.csv
 *.tsv
 *.xlsx
+README.html
 
 # Pkgdown
 pkgdown/**

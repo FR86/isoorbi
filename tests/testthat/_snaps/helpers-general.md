@@ -1,4 +1,4 @@
-# start/finish_info() [plain]
+# start_info() / finish_info() / cli [plain]
 
     Code
       test_info()
@@ -73,7 +73,7 @@
         > ! in wrap_f(): my warning
         > x in internal_func(): my error
 
-# start/finish_info() [fancy]
+# start_info() / finish_info() / cli [fancy]
 
     Code
       test_info()

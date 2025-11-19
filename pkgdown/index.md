@@ -28,6 +28,17 @@ You can install the current CRAN version of `isoorbi` with:
     # check/install the isoraw reader
     isoorbi::orbi_check_isoraw()
 
+> Important: the call to `orbi_check_isoraw()` installs the [isoraw
+> reader](https://github.com/isoverse/isoorbi/tree/main/inst/assembly)
+> built into this package, which uses Thermo’s
+> [RawFileReader](https://github.com/thermofisherlsms/RawFileReader) to
+> make it possible to read .RAW files directly. During the installation,
+> you will be asked to agree to [Thermo’s license
+> agreement](https://github.com/fgcz/rawrr/blob/devel/inst/rawrrassembly/RawFileReaderLicense.txt)
+> to proceed.
+
+### Development version
+
 To use the latest updates, you can install the development version of
 `isoorbi` from [GitHub](https://github.com/). If you are on Windows,
 make sure to install the equivalent version of
@@ -37,29 +48,19 @@ version of R (you can find out which version you have with
 version](https://cran.r-project.org/) 4.4 or newer).
 
     # checks that you are set up to build R packages from source
-    if(!requireNamespace("pkgbuild", quietly = TRUE)) install.packages("pkgbuild")
+    if (!requireNamespace("pkgbuild", quietly = TRUE)) {
+      install.packages("pkgbuild")
+    }
     pkgbuild::check_build_tools()
 
     # installs the latest isoorbi package from GitHub
-    if(!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
+    if (!requireNamespace("pak", quietly = TRUE)) {
+      install.packages("pak")
+    }
     pak::pak("isoverse/isoorbi")
 
     # check/install the isoraw reader
     isoorbi::orbi_check_isoraw()
-
-> Important: as of isoorbi version 1.5.0, it is possible to read .raw
-> files directly using the [isoraw
-> reader](https://github.com/isoverse/isoorbi/tree/main/inst/assembly)
-> built into this package. The first time you read a .raw file, you will
-> be asked to agree to [Thermo’s license
-> agreement](https://github.com/fgcz/rawrr/blob/devel/inst/rawrrassembly/RawFileReaderLicense.txt)
-> to proceed. Implementation of the isoraw reader, would not have been
-> possible without the example provided by Jim Shofstahl as part of
-> Thermo’s
-> [RawFileReader](https://github.com/thermofisherlsms/RawFileReader) and
-> the raw file reader developed by Witold Wolski, Christian Panse,
-> Christian Trachsel, and Tobias Kockmann as part of the [rawrr
-> package](https://github.com/fgcz/rawrr).
 
 ## Show me some code
 
@@ -80,7 +81,7 @@ version](https://cran.r-project.org/) 4.4 or newer).
 
     # read the raw file incluing 2 of the raw spectra
     raw_files <- file_paths |>
-        orbi_read_raw(include_spectra = c(1, 10))
+      orbi_read_raw(include_spectra = c(1, 10))
 
     # aggregate the raw data (processes the read files)
     raw_agg <- raw_files |> orbi_aggregate_raw()
@@ -94,10 +95,15 @@ version](https://cran.r-project.org/) 4.4 or newer).
 
     # identify isotopcules
     # these could also come from a data frame or a tsv/csv/excel file
-    raw_agg <- raw_agg |> orbi_identify_isotopocules(
-      isotopocules = 
-        c("M0" = 61.9878, "15N" = 62.9850, "17O" = 62.9922, "18O" = 63.9922)
-    )
+    raw_agg <- raw_agg |>
+      orbi_identify_isotopocules(
+        isotopocules = c(
+          "M0" = 61.9878,
+          "15N" = 62.9850,
+          "17O" = 62.9922,
+          "18O" = 63.9922
+        )
+      )
 
     # plot again, now with the isotopocules identified
     raw_agg |> orbi_plot_spectra()
@@ -108,10 +114,11 @@ version](https://cran.r-project.org/) 4.4 or newer).
 
     # process raw files data
     dataset <- raw_agg |>
-      # filter out unidentified peaks
-      orbi_filter_isotopocules() |>
       # check for satellite peaks
       orbi_flag_satellite_peaks() |>
+      # filter out unidentified isotopocules
+      # (happes automatically during define_basepeak as of version 1.5.3)
+      orbi_filter_isotopocules() |>
       # define base peak
       orbi_define_basepeak(basepeak_def = "M0")
 
@@ -124,15 +131,18 @@ version](https://cran.r-project.org/) 4.4 or newer).
 
     # calculate ratios across scans
     results <- dataset |> orbi_summarize_results(ratio_method = "sum")
-       
+
     # print results
-    results |>  orbi_get_data(summary = c("isotopocule", "ratio", "ratio_sem"))
+    results |> orbi_get_data(summary = c("isotopocule", "ratio", "ratio_sem"))
 
     # export results to excel
-    results |> orbi_export_data_to_excel(
-      file = "data_summary.xlsx",
-      include = c("file_info", "summary")
-    )
+    results |>
+      orbi_export_data_to_excel(
+        file = "data_summary.xlsx",
+        # note: as of version 1.5.3, this is the default and does not need to
+        # be specified explicitly anymore
+        include = c("file_info", "summary")
+      )
 
 <PRE class="fansi fansi-output"><CODE><span style='color: #949494;'># A tibble: 3 × 5</span>
    uidx filename             isotopocule   ratio ratio_sem
