@@ -1,4 +1,4 @@
-# orbi_read_raw() [plain]
+# orbi_read_raw() / cli [plain]
 
     Code
       x <- orbi_read_raw(orbi_find_raw(system.file("extdata", package = "isoorbi"),
@@ -74,83 +74,7 @@
       ! Warning: there are no spectra in the data, make sure to include them when
       reading the raw files e.g. with orbi_read_raw(include_spectra = c(1, 10, 100))
 
-# orbi_read_raw() [fancy]
-
-    Code
-      x <- orbi_read_raw(orbi_find_raw(system.file("extdata", package = "isoorbi"),
-      pattern = "nitrate"), read_cache = TRUE, cache = FALSE)
-    Message
-      [32m✔[39m [1morbi_read_raw()[22m read [34mnitrate_test_10scans.raw[39m from cache
-      [32m✔[39m [1morbi_read_raw()[22m read [34mnitrate_test_1scan.raw[39m from cache
-      [32m✔[39m [1morbi_read_raw()[22m finished reading 2 files
-
 ---
-
-    Code
-      x
-    Message
-      ──────────────── [1m2 raw files - combine with orbi_aggregate_raw()[22m ───────────────
-      1. [34mnitrate_test_10scans.raw[39m has 10 [32mscans[39m with 126 [32mpeaks[39m; no [32mspectra[39m were loaded
-      2. [34mnitrate_test_1scan.raw[39m   has  1 [32mscans[39m with  12 [32mpeaks[39m; no [32mspectra[39m were loaded
-
----
-
-    Code
-      y <- orbi_aggregate_raw(x)
-    Message
-      [32m✔[39m [1morbi_aggregate_raw()[22m aggregated [34mfile_info[39m (2), [34mscans[39m (11), [34mpeaks[39m (138), and
-      [34mspectra[39m (0) from 2 files using the [1m[3mstandard[23m[22m aggregator
-
----
-
-    Code
-      y
-    Message
-      ─────── [1maggregated data from 2 raw files - retrieve with orbi_get_data()[22m ───────
-      → [34mfile_info[39m (2): [32muidx[39m, [32mfilepath[39m, [32mfilename[39m, [32mcreation_date[39m, [32min_aquisition[39m,
-      [32mOperator[39m, [32mFileDescription[39m, [32mMassResolution[39m, [32mSpectraCount[39m, [32mFirstSpectrum[39m,
-      [32mLastSpectrum[39m, [32mStartTime[39m, [32mEndTime[39m, [32mLowMass[39m, [32mHighMass[39m, [32mInstrumentCount[39m,
-      [32mInstrumentModel[39m, [32mInstrumentName[39m, [32mSerialNumber[39m, [32mSoftwareVersion[39m,
-      [32mHardwareVersion[39m, [32mRawFileVersion[39m, [32mInstrumentUnits[39m, [32mComment[39m, [32mSampleId[39m,
-      [32mSampleName[39m, [32mSampleType[39m, [32mSampleWeight[39m, [32mSampleVolume[39m, [32mBarcode[39m, [32mRowNumber[39m, [32mVial[39m,
-      [32mInjectionVolume[39m, [32mDilutionFactor[39m, [32mIstdAmount[39m, [32mCalibrationLevel[39m,
-      [32mInstrumentMethodFile[39m, [32mCalibrationFile[39m, [32mProcessingMethodFile[39m, [32mUserText0[39m,
-      [32mUserText1[39m, [32mUserText2[39m, [32mUserText3[39m, [32mUserText4[39m
-      → [34mscans[39m (11): [32muidx[39m, [32mscan.no[39m, [32mtime.min[39m, [32mtic[39m, [32mit.ms[39m, [32mresolution[39m, [32mmicroscans[39m,
-      [32mbasePeakMz[39m, [32mbasePeakIntensity[39m, [32mlowMass[39m, [32mhighMass[39m, [32mrawOvFtT[39m, [32mintensCompFactor[39m,
-      [32magc[39m, [32magcTarget[39m, [32mnumberLockmassesFound[39m, [32manalyzerTemperature[39m; ([3mnot aggregated[23m:
-      [3m[33mIsCentroidScan[39m[23m, [3m[33mScanType[39m[23m, [3m[33mScan Description[39m[23m, [3m[33mMultiple Injection[39m[23m, [3m[33mMulti Inject[39m[23m
-      [3m[33mInfo[39m[23m, [3m[33mScan Segment[39m[23m, [3m[33mScan Event[39m[23m, [3m[33mMaster Index[39m[23m, [3m[33mMaster Scan Number[39m[23m, [3m[33mCharge State[39m[23m,
-      [3m[33mMonoisotopic M/Z[39m[23m, [3m[33mError in isotopic envelope fit[39m[23m, [3m[33mMax. Ion Time (ms)[39m[23m, [3m[33mMS2[39m[23m
-      [3m[33mIsolation Width[39m[23m, [3m[33mMS2 Isolation Offset[39m[23m, [3m[33mHCD Energy[39m[23m, [3m[33mHCD Energy V[39m[23m, [3m[33m=== Mass[39m[23m
-      [3m[33mCalibration: ===[39m[23m, [3m[33mConversion Parameter B[39m[23m, [3m[33mConversion Parameter C[39m[23m, [3m[33mTemperature[39m[23m
-      [3m[33mComp. (ppm)[39m[23m, [3m[33mRF Comp. (ppm)[39m[23m, [3m[33mSpace Charge Comp. (ppm)[39m[23m, [3m[33mResolution Comp. (ppm)[39m[23m,
-      [3m[33mNumber of Lock Masses[39m[23m, [3m[33mLock Mass #1 (m/z)[39m[23m, [3m[33mLock Mass #2 (m/z)[39m[23m, [3m[33mLock Mass #3[39m[23m
-      [3m[33m(m/z)[39m[23m, [3m[33mLM Search Window (ppm)[39m[23m, [3m[33mLM Search Window (mmu)[39m[23m, [3m[33mLast Locking (sec)[39m[23m, [3m[33mLM[39m[23m
-      [3m[33mm/z-Correction (ppm)[39m[23m, [3m[33m=== Ion Optics Settings: ===[39m[23m, [3m[33mS-Lens RF Level[39m[23m, [3m[33m====[39m[23m
-      [3m[33mDiagnostic Data: ====[39m[23m, [3m[33mApplication Mode[39m[23m, [3m[33mMild Trapping Mode[39m[23m, [3m[33mAPD[39m[23m, [3m[33mRes. Dep.[39m[23m
-      [3m[33mIntens[39m[23m, [3m[33mQ Trans Comp[39m[23m, [3m[33mPrOSA NumF[39m[23m, [3m[33mPrOSA Comp[39m[23m, [3m[33mPrOSA ScScr[39m[23m, [3m[33mDynamic RT Shift[39m[23m
-      [3m[33m(min)[39m[23m, [3m[33mAnalytical OT usage (%)[39m[23m, [3m[33mLC FWHM parameter[39m[23m, [3m[33mPS Inj. Time (ms)[39m[23m, [3m[33mAGC PS[39m[23m
-      [3m[33mMode[39m[23m, [3m[33mAGC PS Diag[39m[23m, [3m[33mAGC Target Adjust[39m[23m, [3m[33mAGC Diag 1[39m[23m, [3m[33mAGC Diag 2[39m[23m, [3m[33mHCD abs. Offset[39m[23m,
-      [3m[33mSource CID eV[39m[23m, [3m[33mAGC Fill[39m[23m, [3m[33mInjection t0[39m[23m, [3m[33mt0 FLP[39m[23m, [3m[33mIso Para R[39m[23m, [3m[33mInj Para R[39m[23m, [3m[33mAccess[39m[23m
-      [3m[33mId[39m[23m, [3m[33mAnalog In A (V)[39m[23m, [3m[33mAnalog In B (V)[39m[23m, [3m[33mFAIMS Attached[39m[23m, [3m[33mFAIMS Voltage On[39m[23m, [3m[33mFAIMS[39m[23m
-      [3m[33mCV[39m[23m)
-      → [34mpeaks[39m (138): [32muidx[39m, [32mscan.no[39m, [32mmzMeasured[39m, [32mintensity[39m, [32mbaseline[39m, [32mpeakNoise[39m,
-      [32mpeakResolution[39m, [32misRefPeak[39m, [32misLockPeak[39m
-      → [34mspectra[39m (0): [32muidx[39m, [32mscan.no[39m, [32mmz[39m, [32mintensity[39m
-      → [34mproblems[39m: has [32mno issues[39m
-
----
-
-    Code
-      out <- orbi_get_data(y, scans = everything(), spectra = everything())
-    Message
-      [32m✔[39m [1morbi_get_data()[22m retrieved 0 records from the combination of [34mfile_info[39m (2),
-      [34mscans[39m (11), and [34mspectra[39m (0) via [32muidx[39m and [32mscan.no[39m
-      [33m![39m [1mWarning[22m: there are no [32mspectra[39m in the data, make sure to include them when
-      reading the raw files e.g. with [1morbi_read_raw(include_spectra = c(1, 10, 100))[22m
-
-# orbi_read_raw() step2 [plain]
 
     Code
       x <- orbi_read_raw(orbi_find_raw(system.file("extdata", package = "isoorbi"),
@@ -283,7 +207,83 @@
       v orbi_get_data() retrieved 675 records from the combination of file_info (2),
       scans (11), and spectra (675) via uidx and scan.no
 
-# orbi_read_raw() step2 [fancy]
+# orbi_read_raw() / cli [fancy]
+
+    Code
+      x <- orbi_read_raw(orbi_find_raw(system.file("extdata", package = "isoorbi"),
+      pattern = "nitrate"), read_cache = TRUE, cache = FALSE)
+    Message
+      [32m✔[39m [1morbi_read_raw()[22m read [34mnitrate_test_10scans.raw[39m from cache
+      [32m✔[39m [1morbi_read_raw()[22m read [34mnitrate_test_1scan.raw[39m from cache
+      [32m✔[39m [1morbi_read_raw()[22m finished reading 2 files
+
+---
+
+    Code
+      x
+    Message
+      ──────────────── [1m2 raw files - combine with orbi_aggregate_raw()[22m ───────────────
+      1. [34mnitrate_test_10scans.raw[39m has 10 [32mscans[39m with 126 [32mpeaks[39m; no [32mspectra[39m were loaded
+      2. [34mnitrate_test_1scan.raw[39m   has  1 [32mscans[39m with  12 [32mpeaks[39m; no [32mspectra[39m were loaded
+
+---
+
+    Code
+      y <- orbi_aggregate_raw(x)
+    Message
+      [32m✔[39m [1morbi_aggregate_raw()[22m aggregated [34mfile_info[39m (2), [34mscans[39m (11), [34mpeaks[39m (138), and
+      [34mspectra[39m (0) from 2 files using the [1m[3mstandard[23m[22m aggregator
+
+---
+
+    Code
+      y
+    Message
+      ─────── [1maggregated data from 2 raw files - retrieve with orbi_get_data()[22m ───────
+      → [34mfile_info[39m (2): [32muidx[39m, [32mfilepath[39m, [32mfilename[39m, [32mcreation_date[39m, [32min_aquisition[39m,
+      [32mOperator[39m, [32mFileDescription[39m, [32mMassResolution[39m, [32mSpectraCount[39m, [32mFirstSpectrum[39m,
+      [32mLastSpectrum[39m, [32mStartTime[39m, [32mEndTime[39m, [32mLowMass[39m, [32mHighMass[39m, [32mInstrumentCount[39m,
+      [32mInstrumentModel[39m, [32mInstrumentName[39m, [32mSerialNumber[39m, [32mSoftwareVersion[39m,
+      [32mHardwareVersion[39m, [32mRawFileVersion[39m, [32mInstrumentUnits[39m, [32mComment[39m, [32mSampleId[39m,
+      [32mSampleName[39m, [32mSampleType[39m, [32mSampleWeight[39m, [32mSampleVolume[39m, [32mBarcode[39m, [32mRowNumber[39m, [32mVial[39m,
+      [32mInjectionVolume[39m, [32mDilutionFactor[39m, [32mIstdAmount[39m, [32mCalibrationLevel[39m,
+      [32mInstrumentMethodFile[39m, [32mCalibrationFile[39m, [32mProcessingMethodFile[39m, [32mUserText0[39m,
+      [32mUserText1[39m, [32mUserText2[39m, [32mUserText3[39m, [32mUserText4[39m
+      → [34mscans[39m (11): [32muidx[39m, [32mscan.no[39m, [32mtime.min[39m, [32mtic[39m, [32mit.ms[39m, [32mresolution[39m, [32mmicroscans[39m,
+      [32mbasePeakMz[39m, [32mbasePeakIntensity[39m, [32mlowMass[39m, [32mhighMass[39m, [32mrawOvFtT[39m, [32mintensCompFactor[39m,
+      [32magc[39m, [32magcTarget[39m, [32mnumberLockmassesFound[39m, [32manalyzerTemperature[39m; ([3mnot aggregated[23m:
+      [3m[33mIsCentroidScan[39m[23m, [3m[33mScanType[39m[23m, [3m[33mScan Description[39m[23m, [3m[33mMultiple Injection[39m[23m, [3m[33mMulti Inject[39m[23m
+      [3m[33mInfo[39m[23m, [3m[33mScan Segment[39m[23m, [3m[33mScan Event[39m[23m, [3m[33mMaster Index[39m[23m, [3m[33mMaster Scan Number[39m[23m, [3m[33mCharge State[39m[23m,
+      [3m[33mMonoisotopic M/Z[39m[23m, [3m[33mError in isotopic envelope fit[39m[23m, [3m[33mMax. Ion Time (ms)[39m[23m, [3m[33mMS2[39m[23m
+      [3m[33mIsolation Width[39m[23m, [3m[33mMS2 Isolation Offset[39m[23m, [3m[33mHCD Energy[39m[23m, [3m[33mHCD Energy V[39m[23m, [3m[33m=== Mass[39m[23m
+      [3m[33mCalibration: ===[39m[23m, [3m[33mConversion Parameter B[39m[23m, [3m[33mConversion Parameter C[39m[23m, [3m[33mTemperature[39m[23m
+      [3m[33mComp. (ppm)[39m[23m, [3m[33mRF Comp. (ppm)[39m[23m, [3m[33mSpace Charge Comp. (ppm)[39m[23m, [3m[33mResolution Comp. (ppm)[39m[23m,
+      [3m[33mNumber of Lock Masses[39m[23m, [3m[33mLock Mass #1 (m/z)[39m[23m, [3m[33mLock Mass #2 (m/z)[39m[23m, [3m[33mLock Mass #3[39m[23m
+      [3m[33m(m/z)[39m[23m, [3m[33mLM Search Window (ppm)[39m[23m, [3m[33mLM Search Window (mmu)[39m[23m, [3m[33mLast Locking (sec)[39m[23m, [3m[33mLM[39m[23m
+      [3m[33mm/z-Correction (ppm)[39m[23m, [3m[33m=== Ion Optics Settings: ===[39m[23m, [3m[33mS-Lens RF Level[39m[23m, [3m[33m====[39m[23m
+      [3m[33mDiagnostic Data: ====[39m[23m, [3m[33mApplication Mode[39m[23m, [3m[33mMild Trapping Mode[39m[23m, [3m[33mAPD[39m[23m, [3m[33mRes. Dep.[39m[23m
+      [3m[33mIntens[39m[23m, [3m[33mQ Trans Comp[39m[23m, [3m[33mPrOSA NumF[39m[23m, [3m[33mPrOSA Comp[39m[23m, [3m[33mPrOSA ScScr[39m[23m, [3m[33mDynamic RT Shift[39m[23m
+      [3m[33m(min)[39m[23m, [3m[33mAnalytical OT usage (%)[39m[23m, [3m[33mLC FWHM parameter[39m[23m, [3m[33mPS Inj. Time (ms)[39m[23m, [3m[33mAGC PS[39m[23m
+      [3m[33mMode[39m[23m, [3m[33mAGC PS Diag[39m[23m, [3m[33mAGC Target Adjust[39m[23m, [3m[33mAGC Diag 1[39m[23m, [3m[33mAGC Diag 2[39m[23m, [3m[33mHCD abs. Offset[39m[23m,
+      [3m[33mSource CID eV[39m[23m, [3m[33mAGC Fill[39m[23m, [3m[33mInjection t0[39m[23m, [3m[33mt0 FLP[39m[23m, [3m[33mIso Para R[39m[23m, [3m[33mInj Para R[39m[23m, [3m[33mAccess[39m[23m
+      [3m[33mId[39m[23m, [3m[33mAnalog In A (V)[39m[23m, [3m[33mAnalog In B (V)[39m[23m, [3m[33mFAIMS Attached[39m[23m, [3m[33mFAIMS Voltage On[39m[23m, [3m[33mFAIMS[39m[23m
+      [3m[33mCV[39m[23m)
+      → [34mpeaks[39m (138): [32muidx[39m, [32mscan.no[39m, [32mmzMeasured[39m, [32mintensity[39m, [32mbaseline[39m, [32mpeakNoise[39m,
+      [32mpeakResolution[39m, [32misRefPeak[39m, [32misLockPeak[39m
+      → [34mspectra[39m (0): [32muidx[39m, [32mscan.no[39m, [32mmz[39m, [32mintensity[39m
+      → [34mproblems[39m: has [32mno issues[39m
+
+---
+
+    Code
+      out <- orbi_get_data(y, scans = everything(), spectra = everything())
+    Message
+      [32m✔[39m [1morbi_get_data()[22m retrieved 0 records from the combination of [34mfile_info[39m (2),
+      [34mscans[39m (11), and [34mspectra[39m (0) via [32muidx[39m and [32mscan.no[39m
+      [33m![39m [1mWarning[22m: there are no [32mspectra[39m in the data, make sure to include them when
+      reading the raw files e.g. with [1morbi_read_raw(include_spectra = c(1, 10, 100))[22m
+
+---
 
     Code
       x <- orbi_read_raw(orbi_find_raw(system.file("extdata", package = "isoorbi"),

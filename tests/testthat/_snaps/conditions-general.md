@@ -64,7 +64,7 @@
       3 warning my_f          long trouble! This sentences is easily longe~ <smplWrnn>
       4 error   internal_func formatted! test <https://isoorbi.isoverse.or~ <rlng_rrr>
 
-# summarize_cnds() [plain]
+# summarize_cnds() / cli [plain]
 
     Code
       cli_bullets(summarize_cnds(out$conditions, .call = NULL))
@@ -134,7 +134,7 @@
     Message
       x in test_summarize_cnds(): = 3 warnings and 1 error yeah!
 
-# summarize_cnds() [fancy]
+# summarize_cnds() / cli [fancy]
 
     Code
       cli_bullets(summarize_cnds(out$conditions, .call = NULL))
@@ -204,7 +204,7 @@
     Message
       [31m✖[39m in [1mtest_summarize_cnds()[22m: = [33m3 warnings[39m and [31m1 error[39m [1myeah![22m
 
-# format_cnds() [plain]
+# format_cnds() / cli [plain]
 
     Code
       format_cnds(out$conditions)
@@ -311,7 +311,7 @@
       [5] "along the way."                                                                
       [6] "x = x in internal_func(): formatted! test <https://isoorbi.isoverse.org>"      
 
-# format_cnds() [fancy]
+# format_cnds() / cli [fancy]
 
     Code
       format_cnds(out$conditions)
@@ -418,7 +418,7 @@
       [5] "along the way."                                                                                                             
       [6] "\033[32mx\033[39m = \033[31m✖\033[39m in \033[1minternal_func()\033[22m: formatted! test <https://isoorbi.isoverse.org>"    
 
-# summarize_and_format_cnds() [plain]
+# summarize_and_format_cnds() / cli [plain]
 
     Code
       cli_bullets(summarize_and_format_cnds(out$conditions, .call = NULL))
@@ -593,7 +593,7 @@
       the way.
       x in internal_func(): formatted! test <https://isoorbi.isoverse.org>
 
-# summarize_and_format_cnds() [fancy]
+# summarize_and_format_cnds() / cli [fancy]
 
     Code
       cli_bullets(summarize_and_format_cnds(out$conditions, .call = NULL))
@@ -768,7 +768,7 @@
       the way.
       [31m✖[39m in [1minternal_func()[22m: formatted! test <https://isoorbi.isoverse.org>
 
-# show_cnds() [plain]
+# show_cnds() / cli [plain]
 
     Code
       show_cnds(out$conditions, .call = NULL)
@@ -794,7 +794,7 @@
         somewhere along the way.
         > x in internal_func(): formatted! test <https://isoorbi.isoverse.org>
 
-# show_cnds() [fancy]
+# show_cnds() / cli [fancy]
 
     Code
       show_cnds(out$conditions, .call = NULL)
@@ -820,7 +820,7 @@
         somewhere along the way.
         → [31m✖[39m in [1minternal_func()[22m: formatted! test <https://isoorbi.isoverse.org>
 
-# abort_cnds() [plain]
+# abort_cnds() / cli [plain]
 
     Code
       abort_cnds(out$conditions, .call = NULL)
@@ -848,7 +848,7 @@
         somewhere along the way.
         > x in internal_func(): formatted! test <https://isoorbi.isoverse.org>
 
-# abort_cnds() [fancy]
+# abort_cnds() / cli [fancy]
 
     Code
       abort_cnds(out$conditions, .call = NULL)

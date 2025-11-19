@@ -1,4 +1,4 @@
-# orbi_adjust_block [plain]
+# orbi_adjust_block() / cli [plain]
 
     Code
       result2 <- orbi_adjust_block(test_data, 1, "test1", shift_start_scan.no = 1)
@@ -33,7 +33,7 @@
         > moved block 1 end from scan 3 (0.30 min) to 5 (0.50 min)
         > moved block 2 start to the new end of block 1
 
-# orbi_adjust_block [fancy]
+# orbi_adjust_block() / cli [fancy]
 
     Code
       result2 <- orbi_adjust_block(test_data, 1, "test1", shift_start_scan.no = 1)
@@ -68,7 +68,7 @@
         → moved [32mblock 1[39m end from scan 3 (0.30 min) to 5 (0.50 min)
         → moved [32mblock 2[39m start to the new end of [32mblock 1[39m
 
-# orbi_segment_block() [plain]
+# orbi_segment_block() / cli [plain]
 
     Code
       res1 <- orbi_segment_blocks(test_data, into_segments = 2)
@@ -92,7 +92,7 @@
       v orbi_segment_blocks() segmented 3 data blocks in '2 files' creating 2.3
       segments per block (on average) with 1.3 scans per segment (on average)
 
-# orbi_segment_block() [fancy]
+# orbi_segment_block() / cli [fancy]
 
     Code
       res1 <- orbi_segment_blocks(test_data, into_segments = 2)

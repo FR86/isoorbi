@@ -6,7 +6,7 @@ test_that("orbi_start_aggregator()", {
   expect_true(is(orbi_start_aggregator("test"), "orbi_aggregator"))
 
   # messages
-  test_that_cli("orbi_start_aggregator()", configs = c("plain", "fancy"), {
+  test_that_cli("cli", configs = c("plain", "fancy"), {
     expect_snapshot(orbi_start_aggregator("test"))
   })
 })
@@ -56,7 +56,7 @@ test_that("orbi_add_to_aggregator()", {
   )
 
   # messages
-  test_that_cli("orbi_start_aggregator()", configs = c("plain", "fancy"), {
+  test_that_cli("cli", configs = c("plain", "fancy"), {
     orbi_start_aggregator("test") |>
       orbi_add_to_aggregator("data", "col") |>
       orbi_add_to_aggregator("data", "num", cast = "as.integer") |>
@@ -155,7 +155,7 @@ test_that("get_data()", {
   }
 
   # messages
-  test_that_cli("get_data()", configs = c("plain", "fancy"), {
+  test_that_cli("cli", configs = c("plain", "fancy"), {
     expect_snapshot(out <- test_run1())
     expect_snapshot(out <- test_run2())
   }) |>

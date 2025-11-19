@@ -1,11 +1,18 @@
-# orbi_start_aggregator() [plain]
+# orbi_start_aggregator() / cli [plain]
 
     Code
       orbi_start_aggregator("test")
     Message
       -------------------------------- Aggregator test -------------------------------
 
----
+# orbi_start_aggregator() / cli [fancy]
+
+    Code
+      orbi_start_aggregator("test")
+    Message
+      ──────────────────────────────── [1mAggregator [3mtest[23m[22m ───────────────────────────────
+
+# orbi_add_to_aggregator() / cli [plain]
 
     Code
       orbi_add_to_aggregator(orbi_add_to_aggregator(orbi_add_to_aggregator(
@@ -23,14 +30,7 @@
        > w(\\d+)_(.*) = as.character(all_matches("(\\d+)-(.*)"))
        > from_fun = as.integer(mean(one_of(a, b), x))
 
-# orbi_start_aggregator() [fancy]
-
-    Code
-      orbi_start_aggregator("test")
-    Message
-      ──────────────────────────────── [1mAggregator [3mtest[23m[22m ───────────────────────────────
-
----
+# orbi_add_to_aggregator() / cli [fancy]
 
     Code
       orbi_add_to_aggregator(orbi_add_to_aggregator(orbi_add_to_aggregator(
@@ -48,7 +48,7 @@
        → [35mw(\\d+)_(.*)[39m = [3mas.character(all_matches("(\\d+)-(.*)"))[23m
        → [32mfrom_fun[39m = [3mas.integer(mean(one_of(a, b), x))[23m
 
-# get_data() [plain]
+# get_data() / cli [plain]
 
     Code
       out <- test_run1()
@@ -64,7 +64,7 @@
       v test_run2() retrieved 162 records from the combination of a (50) and b (50)
       via speed
 
-# get_data() [fancy]
+# get_data() / cli [fancy]
 
     Code
       out <- test_run1()

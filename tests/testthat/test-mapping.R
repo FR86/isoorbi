@@ -58,7 +58,7 @@ test_that("orbi_identify_isotopocules()", {
     expect_error("overlapping tolerance")
 
   # success
-  test_that_cli("orbi_identify_isotopocules()", configs = c("plain", "fancy"), {
+  test_that_cli("cli", configs = c("plain", "fancy"), {
     # with isotopologs tibble
     expect_snapshot(out <- orbi_identify_isotopocules(peaks, isotopologs))
     expect_snapshot_value(out, style = "json2")
@@ -119,7 +119,7 @@ test_that("orbi_filter_isotopocules()", {
   dataset <- structure(list(peaks = peaks), class = "orbi_aggregated_data")
 
   # successful return value
-  test_that_cli("orbi_filter_isotopocules()", configs = c("plain", "fancy"), {
+  test_that_cli("cli", configs = c("plain", "fancy"), {
     expect_snapshot(dataset)
     expect_snapshot(dataset |> orbi_filter_isotopocules())
     expect_snapshot(

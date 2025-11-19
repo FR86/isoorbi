@@ -1,4 +1,4 @@
-# orbi_identify_isotopocules() [plain]
+# orbi_identify_isotopocules() / cli [plain]
 
     Code
       out <- orbi_identify_isotopocules(peaks, isotopologs)
@@ -98,7 +98,7 @@
           "value": [61.9878, 62.985, 62.9922, 63.9922, 61.9878, 62.985, 62.985, 62.9922, 63.9922, 61.9878, 62.985, 62.9922, 63.9922, "NA"]
         },
         {
-          "type": "double",
+          "type": "integer",
           "attributes": {},
           "value": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
         }
@@ -121,7 +121,7 @@
         total) - make sure to evaluate coverage with e.g.
         orbi_plot_isotopocule_coverage()
 
-# orbi_identify_isotopocules() [fancy]
+# orbi_identify_isotopocules() / cli [fancy]
 
     Code
       out <- orbi_identify_isotopocules(peaks, isotopologs)
@@ -221,7 +221,7 @@
           "value": [61.9878, 62.985, 62.9922, 63.9922, 61.9878, 62.985, 62.985, 62.9922, 63.9922, 61.9878, 62.985, 62.9922, 63.9922, "NA"]
         },
         {
-          "type": "double",
+          "type": "integer",
           "attributes": {},
           "value": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
         }
@@ -244,7 +244,7 @@
         total) - make sure to evaluate coverage with e.g.
         [1morbi_plot_isotopocule_coverage()[22m
 
-# orbi_filter_isotopocules() [plain]
+# orbi_filter_isotopocules() / cli [plain]
 
     Code
       dataset
@@ -375,14 +375,14 @@
           "value": [62.985, 63.9922, 62.985, 62.985, 63.9922, 62.985]
         },
         {
-          "type": "double",
+          "type": "integer",
           "attributes": {},
           "value": [1, 1, 1, 1, 1, 1]
         }
       ]
     }
 
-# orbi_filter_isotopocules() [fancy]
+# orbi_filter_isotopocules() / cli [fancy]
 
     Code
       dataset
@@ -513,7 +513,7 @@
           "value": [62.985, 63.9922, 62.985, 62.985, 63.9922, 62.985]
         },
         {
-          "type": "double",
+          "type": "integer",
           "attributes": {},
           "value": [1, 1, 1, 1, 1, 1]
         }

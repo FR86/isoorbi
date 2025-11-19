@@ -1,4 +1,4 @@
-# orbi_read_isox() [plain]
+# orbi_read_isox() / cli [plain]
 
     Code
       orbi_read_isox(file.path(base_dir, "test_files", "missing_column.isox"))
@@ -31,7 +31,7 @@
       (M0, 33S, 17O, 34S, and 18O) from 'testfile_flow.isox'
       v orbi_read_isox() read '.isox' data from 2 files
 
-# orbi_read_isox() [fancy]
+# orbi_read_isox() / cli [fancy]
 
     Code
       orbi_read_isox(file.path(base_dir, "test_files", "missing_column.isox"))
